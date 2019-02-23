@@ -1,9 +1,57 @@
 import Component from '../models/Component';
 import sanitizeHtml from 'sanitize-html';
 
+const updateStatus = (status) => {
+  switch (status) {
+    case 'blocked':
+      return 'ready';
+    case 'ready':
+      return 'in progress';
+    case 'in progress':
+      return 'complete';
+    default:
+      return status;
+  }
+};
+
+const process = async (components, id) => {
+  let importantId = '';
+  components.forEach(component => {
+    if (component.myId === id) {
+      component.status = updateStatus(component.status);
+      importantId = component._id;
+    }
+  });
+
+  components.forEach(component => {
+    if (component.components.filter(c => JSON.stringify(c) === JSON.stringify(importantId)).length > 0) {
+      console.log('I am affect and should check if I need an update: ', component)
+      let requiredCompleted = component.components.length;
+      let complete = 0;
+      component.components.forEach(inner => {
+        components.forEach(lol => {
+          if (JSON.stringify(lol._id) === JSON.stringify(inner) && lol.status === 'complete') {
+            console.log('increasing the count because of completed: ', inner)
+            complete++;
+          }
+        });
+      });
+      if (complete === requiredCompleted) {
+        component.status = updateStatus(component.status)
+      }
+    }
+  });
+};
+
+const saveAll = async (components) => {
+  for (let i = 0; i < components.length; i++) {
+    await components[i].save();
+  }
+};
+
 export function getComponents(req, res) {
   Component.findOne({ isProduct: true })
-    .populate('materials')
+    .deepPopulate('materials components components.materials components.components.materials ')
     .exec((err, components) => {
       if (err) {
         res.status(500)
@@ -13,26 +61,18 @@ export function getComponents(req, res) {
     });
 }
 
-/*
-export function addPost(req, res) {
-  if (!req.body.post.name || !req.body.post.title || !req.body.post.content) {
-    res.status(403).end();
-  }
+export function updateComponent(req, res) {
+  console.log('req.query.id: ', req.query.id);
+  Component.find()
+    .exec(async (err, components) => {
+      if (err) {
+        res.status(500)
+          .send(err);
+      }
 
-  const newPost = new Post(req.body.post);
+      await process(components, req.query.id);
+      await saveAll(components);
 
-  // Let's sanitize inputs
-  newPost.title = sanitizeHtml(newPost.title);
-  newPost.name = sanitizeHtml(newPost.name);
-  newPost.content = sanitizeHtml(newPost.content);
-
-  newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
-  newPost.cuid = cuid();
-  newPost.save((err, saved) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ post: saved });
-  });
+      res.json({ components });
+    });
 }
-*/

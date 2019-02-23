@@ -2,10 +2,8 @@ import { Router } from 'express';
 import * as ComponentController from '../controllers/component.controller';
 const router = new Router();
 
-// Get all Posts
 router.route('/components').get(ComponentController.getComponents);
 
-// Add a new Post
-// router.route('/posts').post(PostController.addPost);
+router.route('/component/update').get(ComponentController.updateComponent);
 
 export default router;
