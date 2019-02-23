@@ -18,20 +18,20 @@ const process = async (components, id) => {
   let importantId = '';
   components.forEach(component => {
     if (component.myId === id) {
-      component.status = updateStatus(component.status);
-      importantId = component._id;
+      if (component.status !== 'blocked') {
+        component.status = updateStatus(component.status);
+        importantId = component._id;
+      }
     }
   });
 
   components.forEach(component => {
     if (component.components.filter(c => JSON.stringify(c) === JSON.stringify(importantId)).length > 0) {
-      console.log('I am affect and should check if I need an update: ', component)
       let requiredCompleted = component.components.length;
       let complete = 0;
       component.components.forEach(inner => {
         components.forEach(lol => {
           if (JSON.stringify(lol._id) === JSON.stringify(inner) && lol.status === 'complete') {
-            console.log('increasing the count because of completed: ', inner)
             complete++;
           }
         });
@@ -62,7 +62,6 @@ export function getComponents(req, res) {
 }
 
 export function updateComponent(req, res) {
-  console.log('req.query.id: ', req.query.id);
   Component.find()
     .exec(async (err, components) => {
       if (err) {
