@@ -36,29 +36,9 @@ export class App extends Component {
   render() {
     return (
       <div>
-        {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools/>}
+        {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
         <FlowControlApp />
         <Footer />
-        <div>
-          <Helmet
-            title="MERN Starter - Blog App"
-            titleTemplate="%s - Blog App"
-            meta={[
-              { charset: 'utf-8' },
-              {
-                'http-equiv': 'X-UA-Compatible',
-                content: 'IE=edge',
-              },
-              {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1',
-              },
-            ]}
-          />
-          <div className={styles.container}>
-            {this.props.children}
-          </div>
-        </div>
       </div>
     );
   }
