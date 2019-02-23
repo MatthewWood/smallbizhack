@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FlowControlApp from './components/FlowControlApp';
 
 // Import Style
 import styles from './App.css';
 
 // Import Components
 import Helmet from 'react-helmet';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Footer from './components/Footer';
 
 // Import Actions
 import { toggleAddPost } from './AppActions';
@@ -37,6 +37,8 @@ export class App extends Component {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools/>}
+        <FlowControlApp />
+        <Footer />
         <div>
           <Helmet
             title="MERN Starter - Blog App"
@@ -53,11 +55,9 @@ export class App extends Component {
               },
             ]}
           />
-          <Header />
           <div className={styles.container}>
             {this.props.children}
           </div>
-          <Footer />
         </div>
       </div>
     );
