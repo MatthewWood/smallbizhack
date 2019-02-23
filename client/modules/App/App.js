@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlowControlApp from './components/FlowControlApp';
-
-// Import Style
-import styles from './App.css';
-
-// Import Components
-import Helmet from 'react-helmet';
 import Footer from './components/Footer';
 
 // Import Actions

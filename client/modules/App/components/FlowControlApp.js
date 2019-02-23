@@ -4,6 +4,7 @@ import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Content from './Content';
 import Header from './Header';
+import { Redirect } from 'react-router';
 
 let theme = createMuiTheme({
   typography: {
@@ -145,6 +146,8 @@ const styles = {
     background: '#eaeff1',
   },
 };
+
+const Test = () => (<div>Hi</div>);
 
 class FlowControlApp extends React.Component {
   state = {

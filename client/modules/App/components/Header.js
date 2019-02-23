@@ -15,8 +15,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
+
+const dogImage = 'https://previews.123rf.com/images/cundrawan703/cundrawan7031207/cundrawan703120700008/14519717-dog-avatar-cartoon-character-icon.jpg';
 
 const styles = theme => ({
   secondaryBar: {
@@ -63,7 +66,7 @@ function Header(props) {
             <Grid item xs />
             <Grid item>
               <Typography className={classes.link} component="a" href="#">
-                Go to docs
+                Connected
               </Typography>
             </Grid>
             <Grid item>
@@ -75,7 +78,7 @@ function Header(props) {
             </Grid>
             <Grid item>
               <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                <Avatar className={classes.avatar} src="/static/images/avatar/1.jpg" />
+                <Avatar className={classes.avatar} src={dogImage} />
               </IconButton>
             </Grid>
           </Grid>
@@ -92,12 +95,12 @@ function Header(props) {
           <Grid container alignItems="center" spacing={8}>
             <Grid item xs>
               <Typography color="inherit" variant="h5">
-                Authentication
+                Pet Palace
               </Typography>
             </Grid>
             <Grid item>
               <Button className={classes.button} variant="outlined" color="inherit" size="small">
-                Web setup
+                Intuit Business Account
               </Button>
             </Grid>
             <Grid item>
@@ -118,10 +121,9 @@ function Header(props) {
         elevation={0}
       >
         <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="Users" />
-          <Tab textColor="inherit" label="Sign-in method" />
-          <Tab textColor="inherit" label="Templates" />
-          <Tab textColor="inherit" label="Usage" />
+          <Tab textColor="inherit" label="Orders" component={Link} to="/orders" />
+          <Tab textColor="inherit" label="Products" />
+          <Tab textColor="inherit" label="Clients" />
         </Tabs>
       </AppBar>
     </React.Fragment>
