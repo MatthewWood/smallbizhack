@@ -12,7 +12,6 @@ import Footer from './components/Footer/Footer';
 
 // Import Actions
 import { toggleAddPost } from './AppActions';
-import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 let DevTools;
 if (process.env.NODE_ENV === 'development') {
@@ -27,7 +26,7 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({isMounted: true}); // eslint-disable-line
+    this.setState({ isMounted: true }); // eslint-disable-line
   }
 
   toggleAddPostSection = () => {
@@ -37,7 +36,7 @@ export class App extends Component {
   render() {
     return (
       <div>
-        {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
+        {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools/>}
         <div>
           <Helmet
             title="MERN Starter - Blog App"
@@ -54,11 +53,7 @@ export class App extends Component {
               },
             ]}
           />
-          <Header
-            switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
-            intl={this.props.intl}
-            toggleAddPost={this.toggleAddPostSection}
-          />
+          <Header />
           <div className={styles.container}>
             {this.props.children}
           </div>
@@ -71,14 +66,12 @@ export class App extends Component {
 
 App.propTypes = {
   children: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 // Retrieve data from store as props
-function mapStateToProps(store) {
+function mapStateToProps() {
   return {
-    intl: store.intl,
   };
 }
 

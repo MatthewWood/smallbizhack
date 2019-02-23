@@ -17,7 +17,7 @@ test('renders properly', t => {
 
   t.truthy(wrapper.hasClass('form'));
   t.truthy(wrapper.hasClass('appear'));
-  t.truthy(wrapper.find('h2').first().containsMatchingElement(<FormattedMessage id="createNewPost" />));
+  t.truthy(wrapper.find('h2').first().containsMatchingElement('createNewPost'));
   t.is(wrapper.find('input').length, 2);
   t.is(wrapper.find('textarea').length, 1);
 });

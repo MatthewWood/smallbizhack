@@ -22,7 +22,7 @@ test('renders the header properly', t => {
     }
   );
 
-  t.truthy(wrapper.find('Link').first().containsMatchingElement(<FormattedMessage id="siteTitle" />));
+  t.truthy(wrapper.find('Link').first().containsMatchingElement('this will break test'));
   t.is(wrapper.find('a').length, 1);
 });
 
