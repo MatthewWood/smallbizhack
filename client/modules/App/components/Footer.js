@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 const styles = () => ({
   footer: {
     textAlign: 'center',
-    padding: '56px 0',
+    padding: '10px 0',
     backgroundSize: 'cover',
+    background: `#FFF url(${bg}) center`,
   },
   footer_p: {
     margin: '0 0 8px 0',
@@ -25,7 +26,7 @@ export function Footer(props) {
   const { classes } = props;
 
   return (
-    <div style={{ background: `#FFF url(${bg}) center` }} className={classes.footer}>
+    <div className={classes.footer}>
       <p>Made with love by the three M's</p>
     </div>
   );
