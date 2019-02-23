@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FlowControlApp from './components/FlowControlApp';
+import Diagram from './components/Diagram';
 import Footer from './components/Footer';
 
 // Import Actions
@@ -31,7 +32,7 @@ export class App extends Component {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
-        <FlowControlApp />
+				<FlowControlApp />
         <Footer />
       </div>
     );
@@ -45,8 +46,7 @@ App.propTypes = {
 
 // Retrieve data from store as props
 function mapStateToProps() {
-  return {
-  };
+  return {};
 }
 
 export default connect(mapStateToProps)(App);
