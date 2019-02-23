@@ -15,6 +15,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -120,10 +121,9 @@ function Header(props) {
         elevation={0}
       >
         <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="Orders" />
+          <Tab textColor="inherit" label="Orders" component={Link} to="/orders" />
           <Tab textColor="inherit" label="Products" />
           <Tab textColor="inherit" label="Clients" />
-          <Tab textColor="inherit" label="Statistics" />
         </Tabs>
       </AppBar>
     </React.Fragment>
