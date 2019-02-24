@@ -15,7 +15,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router';
+import { withRouter } from "react-router";
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -44,7 +44,12 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { classes, onDrawerToggle } = props;
+  const { classes, onDrawerToggle, location, history } = props;
+
+  const doSomething = () => {
+    console.log('location: ', location)
+    console.log('history: ', history)
+  }
 
   return (
     <React.Fragment>
@@ -121,7 +126,7 @@ function Header(props) {
         elevation={0}
       >
         <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="Orders" component={Link} to="/orders" />
+          <Tab textColor="inherit" label="Orders" onClick={doSomething} />
           <Tab textColor="inherit" label="Products" />
           <Tab textColor="inherit" label="Clients" />
         </Tabs>
@@ -133,6 +138,7 @@ function Header(props) {
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
   onDrawerToggle: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(withRouter(Header));

@@ -5,6 +5,7 @@ import FlowControlApp from './components/FlowControlApp';
 import Diagram from './components/Diagram';
 import Footer from './components/Footer';
 
+
 // Import Actions
 import { toggleAddPost } from './AppActions';
 
@@ -32,7 +33,9 @@ export class App extends Component {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
-				<FlowControlApp />
+        <div>
+          {this.props.children}
+        </div>
         <Footer />
       </div>
     );

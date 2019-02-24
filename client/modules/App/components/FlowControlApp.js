@@ -4,7 +4,7 @@ import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Content from './Content';
 import Header from './Header';
-import { Redirect } from 'react-router';
+import { withRouter } from "react-router";
 
 let theme = createMuiTheme({
   typography: {
@@ -181,4 +181,4 @@ FlowControlApp.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FlowControlApp);
+export default withStyles(styles)(withRouter(FlowControlApp));
