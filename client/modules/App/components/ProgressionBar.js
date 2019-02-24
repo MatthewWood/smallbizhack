@@ -1,6 +1,17 @@
 import React from 'react'
-import { Progress } from 'semantic-ui-react'
+import Progress from 'react-progressbar'
 
-const ProgressBar = (props) => <Progress percent={props.p} progress color='green' />
+const divStyle = {
+  marginBottom: '10px',
+};
+
+const ProgressBar = (props) => (
+  <React.Fragment >
+    <span>
+      <Progress completed={props.p} />
+    </span>
+    <span style={divStyle}>{props.p}%</span>
+  </React.Fragment>
+)
 
 export default ProgressBar
