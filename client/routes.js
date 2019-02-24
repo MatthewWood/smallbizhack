@@ -17,8 +17,8 @@ if (typeof require.ensure !== 'function') {
 if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
 	require('./modules/App/components/FlowControlApp');
-	require('./modules/App/components/workflow');
-  require('./modules/Order/pages/OrderPage/OrderPage');
+	require('./modules/App/components/WorkflowAppView');
+  require('./modules/App/components/SampleOrderApp');
   require('./modules/Post/pages/PostDetailPage/PostDetailPage');
 }
 
@@ -45,7 +45,15 @@ export default (
       path="/orders"
 			getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./modules/Order/pages/OrderPage/OrderPage').default);
+          cb(null, require('./modules/App/components/FlowControlApp').default);
+        });
+      }}
+    />
+    <Route
+      path="/order/1"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/App/components/SampleOrderApp').default);
         });
       }}
     />
@@ -53,7 +61,7 @@ export default (
       path="/workflow"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./modules/App/components/workflow').default);
+          cb(null, require('./modules/App/components/WorkflowAppView').default);
         });
       }}
     />

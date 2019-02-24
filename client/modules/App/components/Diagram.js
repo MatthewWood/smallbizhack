@@ -1,56 +1,46 @@
 import React from 'react';
 import bg from '../header-bk.png';
-import { withStyles } from '@material-ui/core';
+// import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Tree from 'react-tree-graph';
 
-const styles = () => ({
-	nodeCircle: {
-	 fill :'white',
-	 stroke:'black',
- 	},
-	pathLink: {
-		fill:'none',
-		stroke:'black',
-	},
-	blocked: {
-		fill: 'red',
-		stroke: 'red',
-	},
-	ready: {
-		fill: 'blue',
-		stroke: 'blue',
-	},
-	inprogress: {
-		fill: 'orange',
-		stroke: 'orange',
-	},
-	complete: {
-		fill: 'green',
-		stroke: 'green',
-	}
+// import "react-tree-graph/dist/style.css";
+// import styles from "./Diagram.css";
 
-});
-// {"components":{
-// "_id":"5c717963814d3324394b91a5",
-// "status":"blocked",
-// "isProduct":true,
-// "__v":0,
-// "materials":[],
-// "components":[]}}
-let status = (status) => {
-	console.log(status);
-
+const status = (status) => {
  return	{
-	className: 'node ' +  status
+	className: status,
+	style: {fill: statusColor(status), stroke: statusColor(status)},
 }}
 
-let parseMaterial = (material) => ({
+const circlePropsByStatus = (status) => {
+ return	{
+	className: status,
+	style: {fill: statusColor(status), stroke: statusColor(status)},
+}}
+const pathPropsByStatus = (status) => {
+	return {
+		style: {
+				fill:'none',
+				stroke: statusColor(status),
+				strokeWidth: '15px'
+		}
+}}
+const statusColor = (status) => {
+	return status === "complete" ? 'green':
+	status === "in progres" ? 'orange' :
+	status === "ready" ? 'blue' :
+	status === "blocked" ?  'red' : 'black';
+}
+const parseMaterial = (material) => ({
+	_id: material._id + Math.random().toString(),
 	name: material.name,
-	gProps: status('complete')
+	circleProps: circlePropsByStatus('complete'),
+	textProps: defaultTextProps(),
+	pathProps: pathPropsByStatus('complete')
 })
 
-let name = (id) => {
+const name = (id) => {
 	return id === "1" ? "Roof" :
 	id === "2" ? "Back and sides" :
 	id === "3" ? "Door" :
@@ -58,140 +48,63 @@ let name = (id) => {
 	id === "5" ? "Dog house bitches!" : "Random Piece"
 }
 
+const defaultTextProps = () => {
+	return {style: {fontSize: 'x-large', fontWeight: '900', textTransform: 'capitalize',
+	 transform: 'rotate(180deg)'
 
-let data = (treeData) => {
+	}}
+}
+
+const data = (treeData) => {
+	if (treeData.components === undefined) {
+		treeData.components = []
+	}
+	if (treeData.materials === undefined) {
+		treeData.materials = []
+	}
 	console.dir(treeData);
 	return {
+		_id: treeData.myId,
     name: name(treeData.myId),
-		gProps: status(treeData.status),
-		children: treeData.components.map(data).concat( treeData.materials.map(parseMaterial))
+		// gProps: status(treeData.status),
+		textProps: defaultTextProps(),
+		circleProps: circlePropsByStatus(treeData.status),
+		pathProps: pathPropsByStatus(treeData.status),
+		children:
+		treeData.components.map(data).concat( treeData.materials.map(parseMaterial))
 	}
 };
-//
-// gProps: {
-// 			className: {classes.blocked}
-//
-// 		}
-// <Tree
-// 	data={data}
-// 	height={200}
-// 	width={400}/>
-let myFakeData = {
-  "components":{
-    "_id":"5c71c414522862eb41807410",
-    "myId":"5",
-    "status":"blocked",
-    "isProduct":true,
-    "__v":0,
-    "materials":[
-      {
-        "_id":"5c71c414522862eb41807407",
-        "name":"wooden floor",
-        "__v":0
-      }
-    ],
-    "components":[
-      {
-        "_id":"5c71c414522862eb4180740f",
-        "myId":"4",
-        "status":"blocked",
-        "isProduct":false,
-        "__v":0,
-        "materials":[
-
-        ],
-        "components":[
-          {
-            "_id":"5c71c414522862eb4180740e",
-            "myId":"3",
-            "status":"ready",
-            "isProduct":false,
-            "__v":0,
-            "materials":[
-              {
-                "_id":"5c71c414522862eb41807409",
-                "name":"wooden front",
-                "__v":0
-              },
-              {
-                "_id":"5c71c414522862eb4180740a",
-                "name":"entry cutout",
-                "__v":0
-              }
-            ],
-            "components":[
-
-            ]
-          },
-          {
-            "_id":"5c71c414522862eb4180740d",
-            "myId":"2",
-            "status":"ready",
-            "isProduct":false,
-            "__v":0,
-            "materials":[
-              {
-                "_id":"5c71c414522862eb41807408",
-                "name":"wooden side",
-                "__v":0
-              },
-              {
-                "_id":"5c71c414522862eb41807408",
-                "name":"wooden side",
-                "__v":0
-              },
-              {
-                "_id":"5c71c414522862eb41807408",
-                "name":"wooden side",
-                "__v":0
-              }
-            ],
-            "components":[
-
-            ]
-          }
-        ]
-      },
-      {
-        "_id":"5c71c414522862eb4180740c",
-        "myId":"1",
-        "status":"ready",
-        "isProduct":false,
-        "__v":0,
-        "materials":[
-          {
-            "_id":"5c71c414522862eb4180740b",
-            "name":"wooden roof",
-            "__v":0
-          },
-          {
-            "_id":"5c71c414522862eb4180740b",
-            "name":"wooden roof",
-            "__v":0
-          }
-        ],
-        "components":[
-
-        ]
-      }
-    ]
-  }
-}
 
 export function Diagram(props) {
   const { classes, treeData } = props;
 
   return (
+		// <div className={styles.link, styles.node}>
 		<Tree
 			data={data(treeData)}
+			keyProp="_id"
 			height={500}
-			width={800}
-			animated/>
+			width={900}
+			animated
+			pathProps={{
+				className: 'link',
+				style: {
+						fill:'none',
+						stroke:'black',
+				}
+			}}
+			margins={{ bottom : 10, left : 140, right : 50, top : 10}}
+			textProps={{
+				textTransform: 'capitalize',
+				fontSize: 'x-large',
+				fontWeight: '900'
+			}}
+			nodeOffset={10}
+			nodeRadius={20}
+			svgProps={{ style: { paddingLeft:'100px', transform: 'rotate(180deg)', overflow: 'visible'}}}
+			/>
+			// </div>
   );
 }
 
-// Footer.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-export default withStyles(styles)(Diagram);
+export default Diagram;

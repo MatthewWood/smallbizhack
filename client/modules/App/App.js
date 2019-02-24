@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 
 // Import Actions
 import { toggleAddPost } from './AppActions';
+import Header from './components/Header';
 
 let DevTools;
 if (process.env.NODE_ENV === 'development') {
@@ -33,6 +34,7 @@ export class App extends Component {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
+        <Header />
         <div>
           {this.props.children}
         </div>

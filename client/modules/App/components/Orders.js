@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ProgressBar from './ProgressionBar';
+import { Link } from 'react-router';
 
 const styles = theme => ({
   root: {
@@ -28,7 +29,7 @@ function createData(internalId, address, name, price, progress) {
 }
 
 const rows = [
-  createData('#1', "10 South Place, London", "Alex", "$150", <ProgressBar p={54} />),
+  createData(<Link to="/order/1" activeClassName="current">#1</Link>, "10 South Place, London", "Alex", "$150", <ProgressBar p={54} />),
   createData('#2', "10 South Place, London", "Mary", "$50", <ProgressBar p={25} />),
   createData('#3', "10 South Place, London", "Natali", "$120", <ProgressBar p={15} />),
   createData('#4', "10 South Place, London", "Dave", "$90", <ProgressBar p={9} />),

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Content from './Content';
-import Header from './Header';
 import { withRouter } from "react-router";
 import Orders from './Orders';
 
@@ -148,17 +146,7 @@ const styles = {
   },
 };
 
-const Test = () => (<div>Hi</div>);
-
 class FlowControlApp extends React.Component {
-  state = {
-    mobileOpen: false,
-  };
-
-  handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-  };
-
   render() {
     const { classes } = this.props;
 
@@ -167,7 +155,6 @@ class FlowControlApp extends React.Component {
         <div className={classes.root}>
           <CssBaseline />
           <div className={classes.appContent}>
-            <Header onDrawerToggle={this.handleDrawerToggle} />
             <main className={classes.mainContent}>
               <Orders />
             </main>
