@@ -45,7 +45,7 @@ const name = (id) => {
 	id === "2" ? "Back and sides" :
 	id === "3" ? "Door" :
 	id === "4" ? "Walls" :
-	id === "5" ? "Dog house bitches!" : "Random Piece"
+	id === "5" ? "Dog house" : "Random Piece"
 }
 
 const defaultTextProps = () => {
