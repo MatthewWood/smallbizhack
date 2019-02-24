@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router';
 
 const TAX_RATE = 0.07;
 
@@ -39,9 +40,7 @@ function subtotal(items) {
 }
 
 const rows = [
-  ['Paperclips (Box)', 100, 1.15],
-  ['Paper (Case)', 10, 45.99],
-  ['Waste Basket', 2, 17.99],
+  [<Link to="/workflow" activeClassName="current">Dog House</Link>, 1, 150],
 ].map((row, id) => createRow(id, ...row));
 
 const invoiceSubtotal = subtotal(rows);
