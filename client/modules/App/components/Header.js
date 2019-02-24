@@ -130,6 +130,8 @@ function Header(props) {
           <Tab textColor="inherit" label="Orders" onClick={doSomething} />
           <Tab textColor="inherit" label="Products" />
           <Tab textColor="inherit" label="Clients" />
+          <Tab textColor="inherit" label="Materials" />
+          <Tab textColor="inherit" label="Invoices" />
         </Tabs>
       </AppBar>
     </React.Fragment>

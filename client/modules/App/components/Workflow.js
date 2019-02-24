@@ -37,7 +37,7 @@ class Workflow extends Component {
     }
     return (
       <div>
-        <p>Hi, I am your workflow</p>
+        <h2>Dog House manufacturing workflow - Order #1</h2>
         <button onClick={doSomething}> click me</button>
         <Diagram treeData={posts} />
       </div>
