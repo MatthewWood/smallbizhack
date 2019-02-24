@@ -52,10 +52,10 @@ let parseMaterial = (material) => ({
 
 let name = (id) => {
 	return id === "1" ? "Roof" :
-	id === "2" ? "Walls" :
+	id === "2" ? "Back and sides" :
 	id === "3" ? "Door" :
-	id === "4" ? "House Component" :
-	id === "5" ? "Roof" : "Random Piece"
+	id === "4" ? "Walls" :
+	id === "5" ? "Dog house bitches!" : "Random Piece"
 }
 
 
@@ -183,7 +183,7 @@ export function Diagram(props) {
 
   return (
 		<Tree
-			data={data(myFakeData.components)}
+			data={data(treeData)}
 			height={500}
 			width={800}
 			animated/>
