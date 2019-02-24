@@ -53,7 +53,7 @@ export default (
       path="/order/1"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./modules/App/components/SampleOrder').default);
+          cb(null, require('./modules/App/components/SampleOrderApp').default);
         });
       }}
     />
