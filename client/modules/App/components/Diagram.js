@@ -31,26 +31,20 @@ const styles = () => ({
 	}
 
 });
-// {"components":{
-// "_id":"5c717963814d3324394b91a5",
-// "status":"blocked",
-// "isProduct":true,
-// "__v":0,
-// "materials":[],
-// "components":[]}}
-let status = (status) => {
-	console.log(status);
+
+const status = (status) => {
 
  return	{
 	className: 'node ' +  status
 }}
 
-let parseMaterial = (material) => ({
+const parseMaterial = (material) => ({
+	_id: material._id + Math.random().toString(),
 	name: material.name,
 	gProps: status('complete')
 })
 
-let name = (id) => {
+const name = (id) => {
 	return id === "1" ? "Roof" :
 	id === "2" ? "Back and sides" :
 	id === "3" ? "Door" :
@@ -59,124 +53,14 @@ let name = (id) => {
 }
 
 
-let data = (treeData) => {
-	console.dir(treeData);
+const data = (treeData) => {
 	return {
+		_id: treeData.myId,
     name: name(treeData.myId),
 		gProps: status(treeData.status),
 		children: treeData.components.map(data).concat( treeData.materials.map(parseMaterial))
 	}
 };
-//
-// gProps: {
-// 			className: {classes.blocked}
-//
-// 		}
-// <Tree
-// 	data={data}
-// 	height={200}
-// 	width={400}/>
-let myFakeData = {
-  "components":{
-    "_id":"5c71c414522862eb41807410",
-    "myId":"5",
-    "status":"blocked",
-    "isProduct":true,
-    "__v":0,
-    "materials":[
-      {
-        "_id":"5c71c414522862eb41807407",
-        "name":"wooden floor",
-        "__v":0
-      }
-    ],
-    "components":[
-      {
-        "_id":"5c71c414522862eb4180740f",
-        "myId":"4",
-        "status":"blocked",
-        "isProduct":false,
-        "__v":0,
-        "materials":[
-
-        ],
-        "components":[
-          {
-            "_id":"5c71c414522862eb4180740e",
-            "myId":"3",
-            "status":"ready",
-            "isProduct":false,
-            "__v":0,
-            "materials":[
-              {
-                "_id":"5c71c414522862eb41807409",
-                "name":"wooden front",
-                "__v":0
-              },
-              {
-                "_id":"5c71c414522862eb4180740a",
-                "name":"entry cutout",
-                "__v":0
-              }
-            ],
-            "components":[
-
-            ]
-          },
-          {
-            "_id":"5c71c414522862eb4180740d",
-            "myId":"2",
-            "status":"ready",
-            "isProduct":false,
-            "__v":0,
-            "materials":[
-              {
-                "_id":"5c71c414522862eb41807408",
-                "name":"wooden side",
-                "__v":0
-              },
-              {
-                "_id":"5c71c414522862eb41807408",
-                "name":"wooden side",
-                "__v":0
-              },
-              {
-                "_id":"5c71c414522862eb41807408",
-                "name":"wooden side",
-                "__v":0
-              }
-            ],
-            "components":[
-
-            ]
-          }
-        ]
-      },
-      {
-        "_id":"5c71c414522862eb4180740c",
-        "myId":"1",
-        "status":"ready",
-        "isProduct":false,
-        "__v":0,
-        "materials":[
-          {
-            "_id":"5c71c414522862eb4180740b",
-            "name":"wooden roof",
-            "__v":0
-          },
-          {
-            "_id":"5c71c414522862eb4180740b",
-            "name":"wooden roof",
-            "__v":0
-          }
-        ],
-        "components":[
-
-        ]
-      }
-    ]
-  }
-}
 
 export function Diagram(props) {
   const { classes, treeData } = props;
@@ -184,14 +68,11 @@ export function Diagram(props) {
   return (
 		<Tree
 			data={data(treeData)}
+			keyProp="_id"
 			height={500}
 			width={800}
 			animated/>
   );
 }
-
-// Footer.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 
 export default withStyles(styles)(Diagram);
