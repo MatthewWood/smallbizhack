@@ -44,11 +44,12 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { classes, onDrawerToggle, location, history } = props;
+  const { classes, onDrawerToggle, router } = props;
 
   const doSomething = () => {
-    console.log('location: ', location)
-    console.log('history: ', history)
+    router.push({
+      pathname: '/orders'
+    });
   }
 
   return (
@@ -138,7 +139,7 @@ function Header(props) {
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
   onDrawerToggle: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(withRouter(Header));

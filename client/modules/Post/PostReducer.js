@@ -1,7 +1,7 @@
 import { ADD_POST, ADD_POSTS, DELETE_POST } from './PostActions';
 
 // Initial State
-const initialState = { data: [] };
+const initialState = { components: [] };
 
 const PostReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,7 +12,7 @@ const PostReducer = (state = initialState, action) => {
 
     case ADD_POSTS :
       return {
-        data: action.posts,
+        components: action.posts,
       };
 
     case DELETE_POST :
@@ -28,7 +28,7 @@ const PostReducer = (state = initialState, action) => {
 /* Selectors */
 
 // Get all posts
-export const getPosts = state => state.posts.data;
+export const getPosts = state => state.posts.components;
 
 // Get post by cuid
 export const getPost = (state, cuid) => state.posts.data.filter(post => post.cuid === cuid)[0];
