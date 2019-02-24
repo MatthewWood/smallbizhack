@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Content from './Content';
 import Header from './Header';
 import { withRouter } from "react-router";
+import Orders from './Orders';
 
 let theme = createMuiTheme({
   typography: {
@@ -168,7 +169,7 @@ class FlowControlApp extends React.Component {
           <div className={classes.appContent}>
             <Header onDrawerToggle={this.handleDrawerToggle} />
             <main className={classes.mainContent}>
-              <Content />
+              <Orders />
             </main>
           </div>
         </div>
