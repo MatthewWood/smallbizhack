@@ -45,7 +45,15 @@ export default (
       path="/orders"
 			getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./modules/Order/pages/OrderPage/OrderPage').default);
+          cb(null, require('./modules/App/components/FlowControlApp').default);
+        });
+      }}
+    />
+    <Route
+      path="/order/1"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/App/components/SampleOrder').default);
         });
       }}
     />
