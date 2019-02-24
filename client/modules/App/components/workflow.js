@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
 import PropTypes from 'prop-types';
+import openSocket from 'socket.io-client';
 
 // Import Actions
 import { addPosts, fetchPosts } from '../../Post/PostActions';
@@ -14,6 +15,18 @@ import Tree, { Diagram } from './Diagram';
 const datas = {"components":{"_id":"5c71c414522862eb41807410","myId":"10","status":"LOOOOOL","isProduct":true,"__v":0,"materials":[{"_id":"5c71c414522862eb41807407","name":"wooden floor","__v":0}],"components":[{"_id":"5c71c414522862eb4180740f","myId":"4","status":"blocked","isProduct":false,"__v":0,"materials":[],"components":[{"_id":"5c71c414522862eb4180740e","myId":"3","status":"ready","isProduct":false,"__v":0,"materials":[{"_id":"5c71c414522862eb41807409","name":"wooden front","__v":0},{"_id":"5c71c414522862eb4180740a","name":"entry cutout","__v":0}],"components":[]},{"_id":"5c71c414522862eb4180740d","myId":"2","status":"ready","isProduct":false,"__v":0,"materials":[{"_id":"5c71c414522862eb41807408","name":"wooden side","__v":0},{"_id":"5c71c414522862eb41807408","name":"wooden side","__v":0},{"_id":"5c71c414522862eb41807408","name":"wooden side","__v":0}],"components":[]}]},{"_id":"5c71c414522862eb4180740c","myId":"1","status":"ready","isProduct":false,"__v":0,"materials":[{"_id":"5c71c414522862eb4180740b","name":"wooden roof","__v":0},{"_id":"5c71c414522862eb4180740b","name":"wooden roof","__v":0}],"components":[]}]}}
 
 class Workflow extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      socket: openSocket('http://localhost:8001'),
+    }
+
+    this.state.socket.on('components',  components => {
+      console.log('lol this actually worked')
+      console.log('components: ', components)
+      this.props.dispatch(addPosts(components))
+    });
+  }
   componentDidMount() {
     this.props.dispatch(fetchPosts());
   }

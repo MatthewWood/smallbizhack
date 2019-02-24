@@ -1,5 +1,11 @@
 import Component from '../models/Component';
-import sanitizeHtml from 'sanitize-html';
+const io = require('socket.io')()
+
+io.listen(8001)
+
+io.on('connection', function (socket) {
+  console.log('CONNECTED!!!!!')
+})
 
 const updateStatus = (status) => {
   switch (status) {
@@ -71,7 +77,15 @@ export function updateComponent(req, res) {
 
       await process(components, req.query.id);
       await saveAll(components);
-
-      res.json({ components });
+      Component.findOne({ isProduct: true })
+        .deepPopulate('materials components components.materials components.components.materials ')
+        .exec((err, components) => {
+          if (err) {
+            res.status(500)
+              .send(err);
+          }
+          io.emit('components', components)
+          res.json({ components });
+        });
     });
 }
