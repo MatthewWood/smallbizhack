@@ -1,36 +1,11 @@
 import React from 'react';
 import bg from '../header-bk.png';
-import { withStyles } from '@material-ui/core';
+// import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Tree from 'react-tree-graph';
 
-const styles = () => ({
-	nodeCircle: {
-	 fill :'white',
-	 stroke:'black',
- 	},
-	pathLink: {
-		fill:'none',
-		stroke:'black',
-	},
-	blocked: {
-		fill: 'red',
-		stroke: 'red',
-	},
-	ready: {
-		fill: 'blue',
-		stroke: 'blue',
-	},
-	inprogress: {
-		fill: 'orange',
-		stroke: 'orange',
-	},
-	complete: {
-		fill: 'green',
-		stroke: 'green',
-	}
-
-});
+// import styles from"react-tree-graph/dist/style.css";
+import "./Diagram.css";
 
 const status = (status) => {
 
@@ -75,4 +50,4 @@ export function Diagram(props) {
   );
 }
 
-export default withStyles(styles)(Diagram);
+export default Diagram;
