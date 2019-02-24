@@ -118,4 +118,10 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin(),
   ],
+
+  node: {
+    fs: "empty",
+    net: "empty",
+    tls: "empty",
+  }
 };

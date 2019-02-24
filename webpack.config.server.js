@@ -58,4 +58,10 @@ module.exports = {
       include: path.join(__dirname, 'node_modules'),
     }),
   ],
+
+  node: {
+    fs: "empty",
+    net: "empty",
+    tls: "empty",
+  }
 };

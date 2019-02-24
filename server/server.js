@@ -105,6 +105,7 @@ const renderFullPage = (html, initialState) => {
         </script>
         <script src='${isProdMode ? assetsManifest['/vendor.js'] : '/vendor.js'}'></script>
         <script src='${isProdMode ? assetsManifest['/app.js'] : '/app.js'}'></script>
+        <script src="https://payments.withbolt.com/b/web/s/payments-1.0.6.min.js">
       </body>
     </html>
   `;
