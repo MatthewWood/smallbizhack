@@ -52,6 +52,18 @@ function Header(props) {
     });
   }
 
+  const callMaterials = () => {
+    router.push({
+      pathname: '/materials'
+    });
+  }
+
+  const callInvoices = () => {
+    router.push({
+      pathname: '/invoices'
+    });
+  }
+
   return (
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
@@ -130,8 +142,8 @@ function Header(props) {
           <Tab textColor="inherit" label="Orders" onClick={doSomething} />
           <Tab textColor="inherit" label="Products" />
           <Tab textColor="inherit" label="Clients" />
-          <Tab textColor="inherit" label="Materials" />
-          <Tab textColor="inherit" label="Invoices" />
+          <Tab textColor="inherit" label="Materials" onClick={callMaterials} />
+          <Tab textColor="inherit" label="Invoices" onClick={callInvoices} />
         </Tabs>
       </AppBar>
     </React.Fragment>

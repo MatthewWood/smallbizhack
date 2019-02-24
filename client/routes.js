@@ -65,5 +65,21 @@ export default (
         });
       }}
     />
+    <Route
+      path="/materials"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/App/components/WorkflowAppView').default);
+        });
+      }}
+    />
+    <Route
+      path="/invoices"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/App/components/InvoicesAppView').default);
+        });
+      }}
+    />
   </Route>
 );
