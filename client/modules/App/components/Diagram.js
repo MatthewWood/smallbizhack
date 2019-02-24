@@ -28,7 +28,7 @@ const pathPropsByStatus = (status) => {
 }}
 const statusColor = (status) => {
 	return status === "complete" ? 'green':
-	status === "in progres" ? 'orange' :
+	status === "in progress" ? 'orange' :
 	status === "ready" ? 'blue' :
 	status === "blocked" ?  'red' : 'black';
 }
