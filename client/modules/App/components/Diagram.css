@@ -1,0 +1,57 @@
+.node circle {
+	fill: white;
+	stroke: black;
+}
+
+path.link {
+	fill: none;
+	stroke: black;
+}
+
+.ready {
+	fill: blue;
+	stroke: blue;
+}
+
+.blocked {
+	fill: red;
+	stroke: red;
+}
+
+.inprogress {
+	fill: orange;
+	stroke: orange;
+}
+
+.complete {
+	fill: green;
+	stroke: green;
+}
+
+/* // const styles = () => ({
+// 	nodeCircle: {
+// 	 fill :'white',
+// 	 stroke:'black',
+//  	},
+// 	pathLink: {
+// 		fill:'none',
+// 		stroke:'black',
+// 	},
+// 	blocked: {
+// 		fill: 'red',
+// 		stroke: 'red',
+// 	},
+// 	ready: {
+// 		fill: 'blue',
+// 		stroke: 'blue',
+// 	},
+// 	inprogress: {
+// 		fill: 'orange',
+// 		stroke: 'orange',
+// 	},
+// 	complete: {
+// 		fill: 'green',
+// 		stroke: 'green',
+// 	}
+//
+// }); */
