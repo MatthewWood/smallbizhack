@@ -20,15 +20,13 @@ class Workflow extends Component {
     this.state = {
       socket: openSocket('http://localhost:8001'),
     }
-
-    this.state.socket.on('components',  components => {
-      console.log('lol this actually worked')
-      console.log('components: ', components)
-      this.props.dispatch(addPosts(components))
-    });
   }
+
   componentDidMount() {
     this.props.dispatch(fetchPosts());
+    this.state.socket.on('components',  components => {
+      this.props.dispatch(addPosts(components))
+    });
   }
 
   render() {

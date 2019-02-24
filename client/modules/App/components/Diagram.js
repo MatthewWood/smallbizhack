@@ -85,7 +85,6 @@ export function Diagram(props) {
 			keyProp="_id"
 			height={500}
 			width={900}
-			animated
 			pathProps={{
 				className: 'link',
 				style: {
