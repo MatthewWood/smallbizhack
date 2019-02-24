@@ -56,6 +56,13 @@ const defaultTextProps = () => {
 }
 
 const data = (treeData) => {
+	if (treeData.components === undefined) {
+		treeData.components = []
+	}
+	if (treeData.materials === undefined) {
+		treeData.materials = []
+	}
+	console.dir(treeData);
 	return {
 		_id: treeData.myId,
     name: name(treeData.myId),
@@ -63,7 +70,8 @@ const data = (treeData) => {
 		textProps: defaultTextProps(),
 		circleProps: circlePropsByStatus(treeData.status),
 		pathProps: pathPropsByStatus(treeData.status),
-		children: treeData.components.map(data).concat( treeData.materials.map(parseMaterial))
+		children:
+		treeData.components.map(data).concat( treeData.materials.map(parseMaterial))
 	}
 };
 
