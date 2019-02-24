@@ -8,10 +8,23 @@ import Tree from 'react-tree-graph';
 // import styles from "./Diagram.css";
 
 const status = (status) => {
-
  return	{
 	className: status,
-	style: style(status),
+	style: {fill: statusColor(status), stroke: statusColor(status)},
+}}
+
+const circlePropsByStatus = (status) => {
+ return	{
+	className: status,
+	style: {fill: statusColor(status), stroke: statusColor(status)},
+}}
+const pathPropsByStatus = (status) => {
+	return {
+		style: {
+				fill:'none',
+				stroke: statusColor(status),
+				strokeWidth: '15px'
+		}
 }}
 const statusColor = (status) => {
 	return status === "complete" ? 'green':
@@ -19,25 +32,12 @@ const statusColor = (status) => {
 	status === "ready" ? 'blue' :
 	status === "blocked" ?  'red' : 'black';
 }
-const style = (status) => {
-	return status === "complete" ? {fill: 'green', stroke: 'green'} :
-	status === "in progres" ? {fill: 'orange', stroke: 'orange'} :
-	status === "ready" ? {fill: 'blue', stroke: 'blue'} :
-	status === "blocked" ?  {fill: 'red', stroke: 'red'} : {}
-}
 const parseMaterial = (material) => ({
 	_id: material._id + Math.random().toString(),
 	name: material.name,
-	circleProps: status('complete'),
-	textProps: {style: {fontSize: 'x-large', fontWeight: '900', textTransform: 'capitalize'
-	}},
-	pathProps: {
-		style: {
-				fill:'none',
-				stroke: statusColor('complete'),
-				strokeWidth: '15px'
-		}
-	}
+	circleProps: circlePropsByStatus('complete'),
+	textProps: defaultTextProps(),
+	pathProps: pathPropsByStatus('complete')
 })
 
 const name = (id) => {
@@ -48,23 +48,21 @@ const name = (id) => {
 	id === "5" ? "Dog house bitches!" : "Random Piece"
 }
 
+const defaultTextProps = () => {
+	return {style: {fontSize: 'x-large', fontWeight: '900', textTransform: 'capitalize',
+	 transform: 'rotate(180deg)'
+
+	}}
+}
 
 const data = (treeData) => {
 	return {
 		_id: treeData.myId,
     name: name(treeData.myId),
 		// gProps: status(treeData.status),
-		textProps: {dx: -80, dy: 50, style: {textTransform: 'capitalize',
-		fontSize: 'x-large',
-		fontWeight: '900' }},
-		circleProps: status(treeData.status),
-		pathProps: {
-			style: {
-					fill:'none',
-					stroke: statusColor(treeData.status),
-					strokeWidth: '15px'
-			}
-		},
+		textProps: defaultTextProps(),
+		circleProps: circlePropsByStatus(treeData.status),
+		pathProps: pathPropsByStatus(treeData.status),
 		children: treeData.components.map(data).concat( treeData.materials.map(parseMaterial))
 	}
 };
@@ -78,7 +76,7 @@ export function Diagram(props) {
 			data={data(treeData)}
 			keyProp="_id"
 			height={500}
-			width={800}
+			width={900}
 			animated
 			pathProps={{
 				className: 'link',
@@ -87,7 +85,7 @@ export function Diagram(props) {
 						stroke:'black',
 				}
 			}}
-			margins={{ bottom : 10, left : 20, right : 180, top : 10}}
+			margins={{ bottom : 10, left : 140, right : 50, top : 10}}
 			textProps={{
 				textTransform: 'capitalize',
 				fontSize: 'x-large',
@@ -95,6 +93,7 @@ export function Diagram(props) {
 			}}
 			nodeOffset={10}
 			nodeRadius={20}
+			svgProps={{ style: { paddingLeft:'100px', transform: 'rotate(180deg)', overflow: 'visible'}}}
 			/>
 			// </div>
   );
