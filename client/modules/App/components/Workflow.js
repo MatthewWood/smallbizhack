@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import openSocket from 'socket.io-client';
 
+import ConversationClient from 'nexmo-client';
 // Import Actions
 import { addPosts, fetchPosts } from '../../Post/PostActions';
 
@@ -32,13 +33,16 @@ class Workflow extends Component {
   render() {
     const { posts } = this.props
 
-    const doSomething = () => {
-      this.props.dispatch(addPosts(datas.components))
-    }
+		const callMayur = () => {
+			new ConversationClient()
+			  .login("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NTEwMDY1OTcsImp0aSI6ImI4MWRhNzQwLTM4MjQtMTFlOS1iZDEyLWQ1YWJmOTg4NzhmYiIsInN1YiI6IkhBQ0siLCJleHAiOjE1NTEwOTI5OTMsImFjbCI6eyJwYXRocyI6eyIvdjEvdXNlcnMvKioiOnt9LCIvdjEvY29udmVyc2F0aW9ucy8qKiI6e30sIi92MS9zZXNzaW9ucy8qKiI6e30sIi92MS9kZXZpY2VzLyoqIjp7fSwiL3YxL2ltYWdlLyoqIjp7fSwiL3YzL21lZGlhLyoqIjp7fSwiL3YxL2FwcGxpY2F0aW9ucy8qKiI6e30sIi92MS9wdXNoLyoqIjp7fSwiL3YxL2tub2NraW5nLyoqIjp7fX19LCJhcHBsaWNhdGlvbl9pZCI6IjNmNjAzNDkzLWY5ZTQtNGU5Zi04OTUxLTcyZWU1NDMyZTdjNCJ9.RvEr7YeJmJusD6k_SQTy4AW2H_UGbhUgkniifDTId49Iexj-yyhdt1BmCObFUSfGCV4XkPiW5dvyJcNUD8ITXpfWydmqTaOGzkuhpUqnLWyV-5ALRzKQ6rFopFMwiJjn_P8B_E1WouyxWrWcFKcD4S6HvVDNasEuCEbysNXGmLEJcIGMzhELI6QgVYcYQzW-Hp24XsnTdnB4q7nj_HlzMMTiZHylDQ-4WPQz6H6VqpHz4g373QFxqet0pv66DDGqpCG2gP8l4itewrcLYQ-4baSrSL1Jnxrhyzp8sq7NlFLiao7WhLck6vdNXPy19XjBaOqZ_uVoJ3wJwVoFfrWkpQ")
+				.then(app => app.callPhone("447887391825"))
+		}
+
     return (
       <div>
         <h2>Dog House manufacturing workflow - Order #1</h2>
-        <button onClick={doSomething}> click me</button>
+        <button onClick={callMayur}>Remind user</button>
         <Diagram treeData={posts} />
       </div>
     );
