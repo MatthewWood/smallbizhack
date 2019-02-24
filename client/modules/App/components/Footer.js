@@ -8,7 +8,7 @@ const styles = () => ({
     textAlign: 'center',
     padding: '10px 0',
     backgroundSize: 'cover',
-    background: `#FFF url(${bg}) center`,
+    background: `#3f51b5`,
   },
   footer_p: {
     margin: '0 0 8px 0',
@@ -27,7 +27,7 @@ export function Footer(props) {
 
   return (
     <div className={classes.footer}>
-      <p>Made with love by the three M's</p>
+      <b><p className={classes.footer_p}>Made with love by the three M's</p></b>
     </div>
   );
 }

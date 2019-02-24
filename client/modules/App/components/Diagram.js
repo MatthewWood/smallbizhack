@@ -49,8 +49,8 @@ const name = (id) => {
 }
 
 const defaultTextProps = () => {
-	return {style: {fontSize: 'x-large', fontWeight: '900', textTransform: 'capitalize',
-	 transform: 'rotate(180deg)'
+	return {style: {fontSize: '1.3rem', fontWeight: '900', textTransform: 'capitalize',
+	 transform: 'rotate(180deg) translateY(-4%) translateX(-5%)'
 
 	}}
 }
@@ -83,7 +83,7 @@ export function Diagram(props) {
 		<Tree
 			data={data(treeData)}
 			keyProp="_id"
-			height={500}
+			height={800}
 			width={900}
 			pathProps={{
 				className: 'link',
